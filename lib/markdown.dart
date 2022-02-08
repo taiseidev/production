@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class MarkDownPage extends StatefulWidget {
+  const MarkDownPage({Key? key}) : super(key: key);
+
   @override
   State<MarkDownPage> createState() => _MarkDownPageState();
 }
@@ -12,12 +15,12 @@ class _MarkDownPageState extends State<MarkDownPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Markdown'),
-        backgroundColor: Color(0xff55C500),
+        title: const Text('Markdown'),
+        backgroundColor: const Color(0xff55C500),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color(0xff55C500),
-        child: Icon(Icons.post_add),
+        backgroundColor: const Color(0xff55C500),
+        child: const Icon(Icons.post_add),
         onPressed: () {},
       ),
       body: Column(
@@ -27,13 +30,13 @@ class _MarkDownPageState extends State<MarkDownPage> {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Color(0xffC2C2C3),
+                  color: const Color(0xffC2C2C3),
                 ),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0, left: 8.0),
                 child: TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'タイトル',
                     border: InputBorder.none,
                   ),
@@ -49,14 +52,14 @@ class _MarkDownPageState extends State<MarkDownPage> {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Color(0xffC2C2C3),
+                  color: const Color(0xffC2C2C3),
                 ),
               ),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0, left: 8.0),
                 child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: '知識に関連するタグをスペース区切りで5つまで入力（例: Dart Flutter）',
+                  decoration: const InputDecoration(
+                    hintText: 'タグを追加（例: Dart Flutter）',
                     border: InputBorder.none,
                   ),
                 ),
@@ -71,7 +74,7 @@ class _MarkDownPageState extends State<MarkDownPage> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color(0xffC2C2C3),
+                        color: const Color(0xffC2C2C3),
                       ),
                     ),
                     child: Padding(
@@ -85,7 +88,7 @@ class _MarkDownPageState extends State<MarkDownPage> {
                         },
                         maxLines: 100,
                         minLines: 31,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
                         ),
                       ),
@@ -100,12 +103,12 @@ class _MarkDownPageState extends State<MarkDownPage> {
                   height: 625,
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color(0xffC2C2C3),
+                      color: const Color(0xffC2C2C3),
                     ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(_contents),
+                    child: MarkdownBody(data: _contents),
                   ),
                 ),
               ),

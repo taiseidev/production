@@ -15,17 +15,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MarkDownPage(),
+      home: const MarkDownPage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('production'),
+        title: const Text('production'),
       ),
       body: Center(
         child: Column(
@@ -36,12 +38,12 @@ class MyHomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return MarkDownPage();
+                      return const MarkDownPage();
                     },
                   ),
                 );
               },
-              child: Text('MarkDown'),
+              child: const Text('MarkDown'),
             ),
           ],
         ),
