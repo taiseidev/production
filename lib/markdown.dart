@@ -9,25 +9,39 @@ class MarkDownPage extends StatefulWidget {
 }
 
 class _MarkDownPageState extends State<MarkDownPage> {
-  TextEditingController? _contentController;
+  final _contesController = TextEditingController();
   String _contents = '';
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Markdown'),
-        backgroundColor: const Color(0xff55C500),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff55C500),
-        child: const Icon(Icons.post_add),
-        onPressed: () {},
-      ),
-      body: Column(
+      appBar: _buildAppBar(),
+      body: _buildBody(size),
+      floatingActionButton: _buildFloatingActionButton(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text('Markdown'),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.post_add),
+        ),
+      ],
+      backgroundColor: const Color(0xff55C500),
+    );
+  }
+
+  Widget _buildBody(Size size) {
+    return SingleChildScrollView(
+      child: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
+              width: size.width * 0.8,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: const Color(0xffC2C2C3),
@@ -45,18 +59,19 @@ class _MarkDownPageState extends State<MarkDownPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              left: 8.0,
-              right: 8.0,
-            ),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: Container(
+              width: size.width * 0.8,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: const Color(0xffC2C2C3),
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+                padding: const EdgeInsets.only(
+                  right: 8.0,
+                  left: 8.0,
+                ),
                 child: TextFormField(
                   decoration: const InputDecoration(
                     hintText: 'タグを追加（例: Dart Flutter）',
@@ -66,41 +81,14 @@ class _MarkDownPageState extends State<MarkDownPage> {
               ),
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color(0xffC2C2C3),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        controller: _contentController,
-                        onChanged: (value) {
-                          setState(() {
-                            _contents = value;
-                          });
-                        },
-                        maxLines: 100,
-                        minLines: 31,
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 710,
-                  height: 625,
+          SizedBox(
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: size.width * 0.4,
+                  height: size.height * 0.7,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: const Color(0xffC2C2C3),
@@ -108,14 +96,61 @@ class _MarkDownPageState extends State<MarkDownPage> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: MarkdownBody(data: _contents),
+                    child: TextFormField(
+                      controller: _contesController,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            _contents = value;
+                          },
+                        );
+                      },
+                      maxLines: 100,
+                      minLines: 30,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  width: size.width * 0.4,
+                  height: size.height * 0.7,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color(0xffC2C2C3),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MarkdownBody(
+                      data: _contents,
+                      styleSheet: MarkdownStyleSheet(
+                        h1: const TextStyle(color: Colors.amber),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),
+    );
+  }
+
+  FloatingActionButton _buildFloatingActionButton() {
+    return FloatingActionButton(
+      backgroundColor: const Color(0xff55C500),
+      child: const Icon(Icons.delete),
+      onPressed: () {
+        _contesController.clear();
+        setState(
+          () {
+            _contents = '';
+          },
+        );
+      },
     );
   }
 }
