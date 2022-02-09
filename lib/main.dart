@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myproduction/markdown.dart';
 
+import 'notification_app.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MarkDownPage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -45,6 +47,18 @@ class MyHomePage extends StatelessWidget {
                 );
               },
               child: const Text('MarkDown'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return NotificationApp();
+                    },
+                  ),
+                );
+              },
+              child: const Text('NotificationApp'),
             ),
           ],
         ),

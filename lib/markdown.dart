@@ -122,6 +122,7 @@ class _MarkDownPageState extends State<MarkDownPage> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         FloatingActionButton(
+          heroTag: '1',
           backgroundColor: const Color(0xff55C500),
           child: const Icon(Icons.post_add),
           onPressed: () {
@@ -187,6 +188,7 @@ class _MarkDownPageState extends State<MarkDownPage> {
           height: 10,
         ),
         FloatingActionButton(
+          heroTag: '2',
           backgroundColor: const Color(0xff55C500),
           child: const Icon(Icons.delete),
           onPressed: () {
