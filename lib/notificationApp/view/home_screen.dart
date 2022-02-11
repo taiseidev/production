@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:myproduction/notificationApp/post_page.dart';
-import 'package:myproduction/notificationApp/setting_page.dart';
+import 'package:myproduction/notificationApp/view/setting_page.dart';
 
 import 'home_page.dart';
+import 'post_page.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_currentPageIndex == 0) {
       return const HomePage();
     } else if (_currentPageIndex == 1) {
-      return const PostPage();
+      return PostPage();
     }
     return const SettingPage();
   }
