@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "722250679899",
+    "project_id": "markdown-project-fbd69",
+    "storage_bucket": "markdown-project-fbd69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722250679899:android:e5a8f6e5bee973961ba17e",
+        "android_client_info": {
+          "package_name": "com.example.myproduction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722250679899-h0ifcf0nhhc8jpb1uqp6vur7mf15h7kd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3WbgLrIE3wIk5xPR1HPOjkviwXwBuVko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722250679899-h0ifcf0nhhc8jpb1uqp6vur7mf15h7kd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "722250679899-m7bmmqqp20b75bmag7s22s79hjbblg2c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.myproduction"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
