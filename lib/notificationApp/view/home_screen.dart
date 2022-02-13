@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildBody() {
     if (_currentPageIndex == 0) {
-      return const HomePage();
+      return HomePage();
     } else if (_currentPageIndex == 1) {
       return PostPage();
     }
