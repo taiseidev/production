@@ -4,6 +4,7 @@ import 'package:myproduction/notificationApp/model/notification_task_model.dart'
 import 'package:myproduction/notificationApp/repository/firestore_repository.dart';
 import 'package:myproduction/notificationApp/viewModel/notification_task_view_model.dart';
 import 'package:myproduction/notificationApp/viewModel/task_view_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'model/task_model.dart';
 import 'state/task_state.dart';
@@ -54,6 +55,7 @@ final notificationTaskProvider =
             )
             .toList(),
       );
+
   final countNotifier = ref.watch(countViewModelProvider.notifier);
   countNotifier.setTimer();
   return stream;

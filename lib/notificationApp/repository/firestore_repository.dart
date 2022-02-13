@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:myproduction/notificationApp/utils/convert_datetime.dart';
 import 'package:myproduction/notificationApp/utils/firestore_auth.dart';
+import 'package:uuid/uuid.dart';
 
 class FirestoreRepository {
   static Future<void> setTask(String task) async {
@@ -21,6 +22,7 @@ class FirestoreRepository {
 
   static Future setNotificationTask(
       String task, TextEditingController notificationTime) async {
+    var uuid = Uuid();
     await FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuthUtills.uid)
