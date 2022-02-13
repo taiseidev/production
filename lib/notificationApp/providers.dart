@@ -1,27 +1,60 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:myproduction/notificationApp/model/count_model.dart';
+import 'package:myproduction/notificationApp/model/notification_task_model.dart';
+import 'package:myproduction/notificationApp/repository/firestore_repository.dart';
+import 'package:myproduction/notificationApp/viewModel/notification_task_view_model.dart';
 import 'package:myproduction/notificationApp/viewModel/task_view_model.dart';
 
 import 'model/task_model.dart';
 import 'state/task_state.dart';
+import 'viewModel/count_view_model.dart';
 
 final taskViewModelProvider =
     StateNotifierProvider.autoDispose<TaskViewModel, TaskState>(
         (ref) => TaskViewModel());
 
-final itemsStreamProvider = StreamProvider<List<TaskModel>>((ref) {
-  final uid = FirebaseAuth.instance.currentUser!.uid;
-  // taskドキュメントのスナップショットを取得
-  final collection = FirebaseFirestore.instance
-      .collection('users')
-      .doc(uid)
-      .collection('task')
-      .orderBy('createdAt', descending: true);
+final countViewModelProvider =
+    StateNotifierProvider<CountViewModel, CountModel>(
+  (ref) => CountViewModel(),
+);
 
+final notificationTaskViewModelProvider =
+    StateNotifierProvider.autoDispose<NotificationTaskViewModel, TaskState>(
+        (ref) => NotificationTaskViewModel());
+
+// タスク追加画面のタスク一覧をStreamで取得
+final itemsStreamProvider = StreamProvider<List<TaskModel>>((ref) {
+  // taskドキュメントのスナップショットを取得
+  final collection = FirestoreRepository.getTaskData();
   // データ（Map型）を取得
   final stream = collection.snapshots().map(
-        (e) => e.docs.map((e) => TaskModel.fromJson(e.data())).toList(),
+        (e) => e.docs
+            .map(
+              (e) => TaskModel.fromJson(
+                e.data(),
+              ),
+            )
+            .toList(),
       );
+  return stream;
+});
+
+// 通知予定のタスク一覧を取得
+final notificationTaskProvider =
+    StreamProvider<List<NotificationTaskModel>>((ref) {
+  // タスクドキュメントのスナップショットを取得
+  final collection = FirestoreRepository.getNotificationTaskData();
+  // データ（Map型）を取得
+  final stream = collection.snapshots().map(
+        (e) => e.docs
+            .map(
+              (e) => NotificationTaskModel.fromJson(
+                e.data(),
+              ),
+            )
+            .toList(),
+      );
+  final countNotifier = ref.watch(countViewModelProvider.notifier);
+  countNotifier.setTimer();
   return stream;
 });
