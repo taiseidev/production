@@ -34,24 +34,24 @@ class _SettingPageState extends State<SettingPage> {
 
   void setItems() {
     _items
-      ..add(DropdownMenuItem(
-        child: Text(
+      ..add(const DropdownMenuItem(
+        child: const Text(
           'A',
           style: TextStyle(fontSize: 40.0),
         ),
         value: 1,
       ))
-      ..add(DropdownMenuItem(
-        child: Text(
+      ..add(const DropdownMenuItem(
+        child: const Text(
           'B',
-          style: TextStyle(fontSize: 40.0),
+          style: const TextStyle(fontSize: 40.0),
         ),
         value: 2,
       ))
-      ..add(DropdownMenuItem(
-        child: Text(
+      ..add(const DropdownMenuItem(
+        child: const Text(
           'C',
-          style: TextStyle(fontSize: 40.0),
+          style: const TextStyle(fontSize: 40.0),
         ),
         value: 3,
       ));

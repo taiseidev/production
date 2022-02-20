@@ -4,7 +4,8 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 
 class CountViewModel extends StateNotifier<CountModel> {
-  CountViewModel() : super(const CountModel());
+  CountViewModel(StateNotifierProviderRef<CountViewModel, CountModel> ref)
+      : super(const CountModel());
 
   late DateTime _time;
 
