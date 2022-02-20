@@ -8,7 +8,7 @@ class Alarm {
   void alertStart() {
     if (Platform.isIOS) {
       _timer = Timer.periodic(
-        Duration(seconds: 3),
+        const Duration(seconds: 3),
         (Timer timer) {
           {
             FlutterRingtonePlayer.play(

@@ -16,7 +16,7 @@ final taskViewModelProvider =
 
 final countViewModelProvider =
     StateNotifierProvider<CountViewModel, CountModel>(
-  (ref) => CountViewModel(),
+  (ref) => CountViewModel(ref),
 );
 
 final notificationTaskViewModelProvider =
@@ -56,7 +56,5 @@ final notificationTaskProvider =
             .toList(),
       );
 
-  final countNotifier = ref.watch(countViewModelProvider.notifier);
-  countNotifier.setTimer();
   return stream;
 });

@@ -22,7 +22,6 @@ class FirestoreRepository {
 
   static Future setNotificationTask(
       String task, TextEditingController notificationTime) async {
-    var uuid = Uuid();
     await FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuthUtills.uid)
@@ -31,7 +30,7 @@ class FirestoreRepository {
       'notificationTask': task,
       'notificationTime': int.parse(notificationTime.text),
       'createdAt': DateTime.now(),
-      'id': uuid.v4(),
+      'count': 0,
     });
   }
 

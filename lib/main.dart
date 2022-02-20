@@ -1,10 +1,25 @@
+import 'package:fcm_config/fcm_config.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:myproduction/markdown.dart';
 import 'notificationApp/view/notification_app.dart';
 
+Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+}
+
 void main() async {
+  // fcm_configパッケージを初期化
+  FCMConfig.instance.init(
+    onBackgroundMessage: _fcmBackgroundHandler,
+    defaultAndroidChannel: AndroidNotificationChannel(
+      'high_importance_channel',
+      'Fcm config',
+      importance: Importance.high,
+      sound: RawResourceAndroidNotificationSound('notification'),
+    ),
+  );
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(

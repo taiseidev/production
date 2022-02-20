@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fcm_config/fcm_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,10 +49,14 @@ class _TopScreenState extends State<TopScreen> {
     final now = DateTime.now();
     // 匿名認証を利用しているユーザーのユーザーIDを取得
     final uid = firebaseauth.currentUser!.uid; // nullableの可能性あり
+    // 端末情報を保存
+    final token = await FirebaseMessaging.instance.getToken();
+
     // firestoreにユーザー情報を追加
     await FirebaseFirestore.instance.collection('users').doc(uid).set({
       'userId': uid,
       'createdAt': now,
+      'token': token,
     });
     // 匿名認証でログインできるようにローカルにユーザーIDを保存
     final prefs = await SharedPreferences.getInstance();

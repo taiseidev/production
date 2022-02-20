@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:myproduction/notificationApp/repository/firestore_repository.dart';
 import 'package:myproduction/notificationApp/viewModel/task_view_model.dart';
+import 'package:http/http.dart' as http;
 
 import '../providers.dart';
 
@@ -169,6 +170,7 @@ class PostPage extends ConsumerWidget {
               ),
               onPressed: () async {
                 await notifier.setTaskData(controller.text);
+                // await notifier.requestAPI(context);
                 Navigator.pop(context);
               },
             ),

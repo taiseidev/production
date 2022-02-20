@@ -10,7 +10,7 @@ class NotificationTaskModel with _$NotificationTaskModel {
   const factory NotificationTaskModel({
     required String notificationTask,
     required int notificationTime,
-    required String id,
+    required int count,
   }) = _NotificationTaskModel;
 
   factory NotificationTaskModel.fromJson(Map<String, dynamic> json) =>
