@@ -1,4 +1,5 @@
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,10 +33,11 @@ class TaskViewModel extends StateNotifier<TaskState> {
     }
   }
 
-  // Future<void> requestAPI(BuildContext context) async {
-  //   HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-  //       'functionsTest',
-  //       options: HttpsCallableOptions(timeout: const Duration(seconds: 300)));
-  //   await callable();
-  // }
+  // Functionsを実行
+  Future<void> requestAPI() async {
+    final functions = FirebaseFunctions.instanceFor(
+        app: Firebase.app(), region: 'asia-northeast1');
+    final callable = functions.httpsCallable('mySendMessages');
+    final results = await callable.call();
+  }
 }
