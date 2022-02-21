@@ -73,7 +73,7 @@ class HomePage extends ConsumerWidget {
                               ),
                               subtitle: SizedBox(
                                 child: Text(
-                                  item.count.toString(),
+                                  item.userId.toString(),
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),
