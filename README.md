@@ -1,6 +1,6 @@
-# myproduction
+# todoサンプルアプリ
 
-A new Flutter project.
+Riverpodを使ったMVVM＋Repositoryパターンを学ぶため作成。
 
 ## Getting Started
 
