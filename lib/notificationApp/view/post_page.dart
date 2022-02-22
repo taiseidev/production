@@ -170,7 +170,6 @@ class PostPage extends ConsumerWidget {
               ),
               onPressed: () async {
                 await notifier.setTaskData(controller.text);
-
                 Navigator.pop(context);
               },
             ),

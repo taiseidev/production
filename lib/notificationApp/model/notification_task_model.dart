@@ -11,6 +11,7 @@ class NotificationTaskModel with _$NotificationTaskModel {
     required String notificationTask,
     required int notificationTime,
     required String userId,
+    required String token,
   }) = _NotificationTaskModel;
 
   factory NotificationTaskModel.fromJson(Map<String, dynamic> json) =>

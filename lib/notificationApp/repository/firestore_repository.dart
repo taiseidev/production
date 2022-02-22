@@ -26,11 +26,14 @@ class FirestoreRepository {
 
   static Future setNotificationTask(
       String task, TextEditingController notificationTime) async {
+    final token = await FirebaseMessaging.instance.getToken();
     await FirebaseFirestore.instance.collection('notificationTask').add({
       'userId': FirebaseAuthUtills.uid,
+      'token': token,
       'notificationTask': task,
       'notificationTime': int.parse(notificationTime.text),
-      'createdAt': DateTime.now(),
+      'createdAt': DateTime.now()
+          .add(Duration(minutes: int.parse(notificationTime.text))),
     });
   }
 
